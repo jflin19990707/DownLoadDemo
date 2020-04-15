@@ -3,7 +3,7 @@ Android DownLoadDemo， AsyncTask and Service used.
 
 This is used in Android 8.0(O) and higher.
 
-Some uri for test
+Some uri for download test
 
 http://a5.pc6.com/cx3/weixin.pc6.apk
 
