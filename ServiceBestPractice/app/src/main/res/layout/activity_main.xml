@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <EditText
+        android:id="@+id/uri_download"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please enter the uri to download">
+    </EditText>
     <Button
         android:id="@+id/start_download"
         android:layout_width="match_parent"

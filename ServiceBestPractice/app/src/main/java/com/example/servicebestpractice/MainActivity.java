@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button startDownload;
     private Button pauseDownload;
     private Button cancelDownload;
+    private EditText editText;
 
     private ServiceConnection connection = new ServiceConnection() {
         @Override
@@ -55,9 +57,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         switch (v.getId()){
+            case R.id.uri_download:
+                break;
             case R.id.start_download:
-                String url = "https://github.com/jflin19990707/DigitalLogicDesign/archive/master.zip";
-                downloadBinder.startDownload(url);
+                String url = editText.getText().toString();
+                if(!url.equals("")&&url.length()!=0){
+                    downloadBinder.startDownload(url);
+                    editText.setText("");
+                }else{
+                    Toast.makeText(MainActivity.this,"The url is empty!",Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.pause_download:
                 downloadBinder.pauseDownload();
@@ -74,12 +83,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startDownload = findViewById(R.id.start_download);
         pauseDownload = findViewById(R.id.pause_download);
         cancelDownload = findViewById(R.id.cancel_download);
+        editText = findViewById(R.id.uri_download);
     }
 
     public void initListener(){
         startDownload.setOnClickListener(this);
         pauseDownload.setOnClickListener(this);
         cancelDownload.setOnClickListener(this);
+        editText.setOnClickListener(this);
     }
 
     @Override
